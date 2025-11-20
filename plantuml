@@ -1,0 +1,18 @@
+@startuml
+title CI/CD - EventFlow Taller
+
+actor Developer
+
+Developer -> GitHub : Push a main
+
+GitHub -> "GitHub Actions" : Dispara workflow CI
+
+rectangle "Pipeline CI" {
+    "Checkout" --> "Build Simulado"
+    "Build Simulado" --> "Tests Simulados"
+    "Tests Simulados" --> "Copiar index.html a /build"
+}
+
+"Copiar index.html a /build" --> GitHub : Publica artefactos (simulado)
+
+@enduml
